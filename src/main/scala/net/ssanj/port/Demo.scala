@@ -25,14 +25,14 @@ object Demo extends App {
       "import scala.language.postfixOps"
   ))
 
-  val result = importsOp.map(Group).map(sortLowerToUpper)
-  result.foreach { x => println(Printer.print(x)) }
+  val resultOp = importsOp.map(ImportGroup.apply).map(sortLowerToUpper)
+  resultOp.foreach { x => println(Printer.print(x)) }
 
-  val groupedImportsOp =
-    createImport(
-    "import com.otherlevels.models.contentTracking.{RetrievalCountRow, RetrievalCount}").
-    map(Single).
-    map(sortWithinGroupImport)
+  // val groupedImportsOp =
+  //   createImport(
+  //   "import com.otherlevels.models.contentTracking.{RetrievalCountRow, RetrievalCount}").
+  //   map(Single).
+  //   map(sortWithinGroupImport)
 
-  groupedImportsOp.foreach { x => println(Printer.print(x)) }
+  // groupedImportsOp.foreach { x => println(Printer.print(x)) }
 }
