@@ -1,2 +1,4 @@
 target
-*-sublime.*
+*.sublime-*
+.ctags_srcs
+.tags
