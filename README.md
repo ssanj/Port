@@ -2,10 +2,10 @@
 
 This is a proof-of-concept for a Sublime plugin I plan to create to sort scala imports.
 
-## Some rules to keep in mind ##
+## Some thoughts on rules ##
 
 * In a grouped import, one with {}, an _ appears last.
-* Should imports that are aliasED with => should be sorted based on their original name or their new name?
+* Should imports that are aliased with => should be sorted based on their original name or their new name?
 * Some imports have __root_. These should ideally be before other imports.
 * Supports fully qualified imports not partial imports
 
@@ -22,18 +22,20 @@ This is a proof-of-concept for a Sublime plugin I plan to create to sort scala i
   import someLib.SomeObject.NestedObject.Blah
 
 * packages are sorted alphabetically from lowercase to uppercase.
- => lowercase vs lowecase = smaller to larger
- => lowercase vs uppercase = lowercase to uppercase
 
 * Remove duplicate imports
   - same import twice
-* Unnecessary import
+* Remove unnecessary import
   - an import from an ._ is explicitly imported again.
        Example:
        import somelib.SomeObject._
        import somelib.SomeObject.Blah (this is unnecessary)
+  - an import that is imported individually and in a group
+       Example:
+       import somelib.{ABC, XYZ} <- prefer grouped imports.
+       import somelib.XYZ <- remove this.
 
-note:
+notes:
 
 There are three ways to form an identifier.
 
