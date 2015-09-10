@@ -12,19 +12,20 @@ object PortTypes {
   object Import {
     //TODO: Add some regex here to ensure we have valid imports.
     //TODO: We don't need an Option here as Seq.empty will cover the empty case.
-    def createImports(values: Seq[String]): Option[Seq[Import]] =
-      Option(values.filter(_.startsWith("import ")).
+    def createImports(values: String*): Seq[Import] =
+      values.filter(_.startsWith("import ")).
                     map(_.substring("import ".length)).
-                    map(Import(_)))
+                    map(Import(_))
   }
 
-  final case class Group[A](values: Seq[A]) {
-    def flatMap[B](f: Seq[A] => Group[B]): Group[B] = f(values)
+  final case class Group[A](value: A) {
+    def map[B](f: A => B): Group[B] = Group(f(value))
+    def flatMap[B](f: A => Group[B]): Group[B] = f(value)
   }
 
   type Rule[A] = Group[A] => Group[A]
 
-  type ImportGroup = Group[Import]
+  type ImportGroup = Group[Seq[Import]]
   type ImportRule = ImportGroup => ImportGroup
 
   object ImportGroup {
