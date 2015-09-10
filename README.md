@@ -1,41 +1,69 @@
 # Port #
 
-This is a proof-of-concept for a Sublime plugin I plan to create to sort scala imports.
+This is a proof-of-concept for a Sublime plugin I plan to create to sort Scala imports.
 
 ## Some thoughts on rules ##
 
-* In a grouped import, one with {}, an _ appears last.
+* In a grouped import, (one with {}), an _ appears last.
 * Should imports that are aliased with => should be sorted based on their original name or their new name?
 * Some imports have __root_. These should ideally be before other imports.
-* Supports fully qualified imports not partial imports
 
-  Example:
+### Use fully qualified imports ###
 
   don't use:
 
+  ```scala
   import somelib.SomeObject._
   import NestedObject.Blah
-
+  ```
   use:
 
+  ```scala
   import someLib.SomeObject._
   import someLib.SomeObject.NestedObject.Blah
+  ```
 
-* packages are sorted alphabetically from lowercase to uppercase.
+### Sorted alphabetically ###
 
-* Remove duplicate imports
-  - same import twice
-* Remove unnecessary import
+  given:
+
+  ```scala
+  "import play.api.Logger",
+  "import java.net.URLDecoder",
+  "import java.util.concurrent.Executors",
+  "import controllers.ExecutionHelpers"
+  ```
+
+  sort to this:
+
+  ```scala
+    "import controllers.ExecutionHelpers",
+    "import java.net.URLDecoder",
+    "import java.util.concurrent.Executors",
+    "import play.api.Logger"
+
+  ```
+### Remove duplicates ###
+
+  ```scala
+  import somelib.SomeObject
+  import somelib.SomeObject <- remove this
+  ```
+### Remove unnecessary imports ###
   - an import from an ._ is explicitly imported again.
-       Example:
+
+       ```scala
        import somelib.SomeObject._
        import somelib.SomeObject.Blah (this is unnecessary)
+       ```
   - an import that is imported individually and in a group
-       Example:
+
+       ```scala
        import somelib.{ABC, XYZ} <- prefer grouped imports.
        import somelib.XYZ <- remove this.
+       ```
 
-notes:
+## Notes ##
 
 There are three ways to form an identifier.
 
