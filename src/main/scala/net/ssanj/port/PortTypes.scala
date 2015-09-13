@@ -10,7 +10,9 @@ object PortTypes {
       values.filter(_.startsWith("import ")).map(Import(_))
   }
 
-  final case class ImportGroup(values: Seq[Import])
+  final case class ImportGroup(values: Seq[Import]) {
+    def map[A](f: Seq[Import] => Seq[Import]): ImportGroup = ImportGroup(f(values))
+  }
 
   type ImportRule = ImportGroup => ImportGroup
 }

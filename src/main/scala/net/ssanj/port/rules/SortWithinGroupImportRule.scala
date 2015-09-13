@@ -27,7 +27,7 @@ trait SortWithinGroupImportRule {
       }
     }
 
-    ImportGroup(group.values.map(sortGroupMembers))
+    group.map(_.map(sortGroupMembers))
   }
 
 }
