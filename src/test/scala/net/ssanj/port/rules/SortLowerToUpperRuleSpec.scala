@@ -27,17 +27,17 @@ final class SortLowerToUpperRuleSpec extends Matchers with WordSpecLike {
 
       val result = rule.sortLowerToUpper(ImportGroup(imports))
       result.value.map(_.value) should contain inOrder (
-        "controllers.ExecutionHelpers",
-        "java.net.URLDecoder",
-        "java.util.concurrent.Executors",
-        "nl.grons.metrics.scala.MetricName",
-        "org.joda.time.{DateTimeZone, LocalDateTime}",
-        "play.api.Logger",
-        "scala.concurrent.duration._",
-        "scala.concurrent.{ExecutionContext, Future}",
-        "scala.language.postfixOps",
-        "scalacache.memoization._",
-        "util.{Error, Result}"
+        "import controllers.ExecutionHelpers",
+        "import java.net.URLDecoder",
+        "import java.util.concurrent.Executors",
+        "import nl.grons.metrics.scala.MetricName",
+        "import org.joda.time.{DateTimeZone, LocalDateTime}",
+        "import play.api.Logger",
+        "import scala.concurrent.duration._",
+        "import scala.concurrent.{ExecutionContext, Future}",
+        "import scala.language.postfixOps",
+        "import scalacache.memoization._",
+        "import util.{Error, Result}"
       )
     }
   }
