@@ -12,7 +12,7 @@ final class SortWithinGroupImportRuleSpec extends Matchers with WordSpecLike {
         val imports = createImports("import com.otherlevels.models.contentTracking.{RetrievalCountRow, Zero, RetrievalCount, Ascending}")
         val result = rule.sortWithinGroupImport(ImportGroup(imports))
 
-        result.value.map(_.value) should contain only (
+        result.values.map(_.value) should contain only (
           "import com.otherlevels.models.contentTracking.{Ascending, RetrievalCount, RetrievalCountRow, Zero}"
         )
       }
@@ -24,7 +24,7 @@ final class SortWithinGroupImportRuleSpec extends Matchers with WordSpecLike {
           val imports = createImports("import com.otherlevels.models.contentTracking.{RetrievalCountRow, Zero, _, RetrievalCount, Ascending}")
           val result = rule.sortWithinGroupImport(ImportGroup(imports))
 
-          result.value.map(_.value) should contain only (
+          result.values.map(_.value) should contain only (
             "import com.otherlevels.models.contentTracking.{Ascending, RetrievalCount, RetrievalCountRow, Zero, _}"
           )
         }

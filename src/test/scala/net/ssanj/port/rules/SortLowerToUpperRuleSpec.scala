@@ -26,7 +26,7 @@ final class SortLowerToUpperRuleSpec extends Matchers with WordSpecLike {
       )
 
       val result = rule.sortLowerToUpper(ImportGroup(imports))
-      result.value.map(_.value) should contain inOrder (
+      result.values.map(_.value) should contain inOrder (
         "import controllers.ExecutionHelpers",
         "import java.net.URLDecoder",
         "import java.util.concurrent.Executors",
