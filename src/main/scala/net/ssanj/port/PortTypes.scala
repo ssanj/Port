@@ -11,7 +11,7 @@ object PortTypes {
   }
 
   final case class ImportGroup(values: Seq[Import]) {
-    def map[A](f: Seq[Import] => Seq[Import]): ImportGroup = ImportGroup(f(values))
+    def map(f: Seq[Import] => Seq[Import]): ImportGroup = ImportGroup(f(values))
   }
 
   type ImportRule = ImportGroup => ImportGroup

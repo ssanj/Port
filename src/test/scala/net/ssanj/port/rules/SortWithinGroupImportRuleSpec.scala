@@ -31,6 +31,17 @@ final class SortWithinGroupImportRuleSpec extends Matchers with WordSpecLike {
       }
     }
 
+    "sort by original name" when {
+      "given an alias as part of a group" in {
+        val imports = createImports("import com.otherlevels.models.contentTracking.{RetrievalCountRow => Count, RetrievalCount}")
+        val result = rule.sortWithinGroupImport(ImportGroup(imports))
+
+        result.values.map(_.value) should contain only (
+          "import com.otherlevels.models.contentTracking.{RetrievalCount, RetrievalCountRow => Count}"
+        )
+      }
+    }
+
     "sort multiple imports" when {
       "given a mixture of grouped and ungrouped imports" in {
         val imports = createImports("import net.ssanj.port.PortTypes._",

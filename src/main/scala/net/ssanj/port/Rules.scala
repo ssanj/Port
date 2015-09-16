@@ -1,9 +1,10 @@
 package net.ssanj.port
 
-import net.ssanj.port.rules.{SortLowerToUpperRule, SortWithinGroupImportRule}
+import net.ssanj.port.rules._
 
 
 object Rules extends SortLowerToUpperRule with
-                     SortWithinGroupImportRule {
+                     SortWithinGroupImportRule with
+                     RemoveDuplicatesRule {
 
 }
