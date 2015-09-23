@@ -15,8 +15,6 @@ final class RemoveDuplicateRuleSpec extends Matchers with WordSpecLike {
         "import play.api.Logger"
       )
 
-      val x:ImportRule = identity
-
       val result = rule.removeDuplicates(ImportGroup(imports))
       result.values.map(_.value) should contain allOf (
         "import play.api.Logger",
