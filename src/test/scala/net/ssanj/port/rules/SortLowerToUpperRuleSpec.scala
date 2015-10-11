@@ -20,6 +20,7 @@ final class SortLowerToUpperRuleSpec extends Matchers with WordSpecLike {
         "import scala.concurrent.{ExecutionContext, Future}",
         "import nl.grons.metrics.scala.MetricName",
         "import scalacache.memoization._",
+        "import Duration",
         "import org.joda.time.{DateTimeZone, LocalDateTime}",
         "import scala.concurrent.duration._",
         "import scala.language.postfixOps"
@@ -37,7 +38,8 @@ final class SortLowerToUpperRuleSpec extends Matchers with WordSpecLike {
         "import scala.concurrent.{ExecutionContext, Future}",
         "import scala.language.postfixOps",
         "import scalacache.memoization._",
-        "import util.{Error, Result}"
+        "import util.{Error, Result}",
+        "import Duration"
       )
     }
   }
